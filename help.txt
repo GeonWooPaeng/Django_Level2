@@ -52,3 +52,27 @@ admin사이트에서 어떤 상품인지 사용자 인지 확인하는 방법
 
 user,order,product models.py 수정
 - def __str__(self)
+
+----------------------------------------------------
+기본 경로 지정 
+user의 views.py 
+ - def index(request)
+
+user의 templates
+ - base.html
+ - index.html
+
+index urls연결 - fc_django의 urls.py 
+ - path()
+
+-------------------------------------------------------------------
+회원가입 view 만들기(form view)
+ - user에서 forms.py를 만든다.
+ - forms.py에서 class RegisterForm 제작
+
+user의 views.py를 만들기
+ - import FormView 
+ - class RegisterView(FormView)
+
+user에서 register.html만들기
+fc_django의 urls.py에서 registerView를 지정해주기 
