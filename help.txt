@@ -32,3 +32,23 @@ order models.py 수정
  - (/fc_django) python manage.py migrate 
 
 -------------------------------------------------------------------
+admin 구성
+
+user admin.py 수정 
+ - class UserAdmin()
+
+product admin.py 수정 
+ - class ProductAdmin()
+
+order admin.py 수정 
+ - class OrderAdmin()
+
+슈퍼 유저 만들기
+ - (cd fc_django) python manage.py createsuperuser
+ - python manage.py runserver에서 확인
+
+--------------------------------------------------------------------
+admin사이트에서 어떤 상품인지 사용자 인지 확인하는 방법
+
+user,order,product models.py 수정
+- def __str__(self)
