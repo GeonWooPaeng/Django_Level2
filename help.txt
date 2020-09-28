@@ -1,0 +1,34 @@
+django 기본설정
+ - virtualenv django_venv
+ - cd django_venv
+ - cd scripts
+ - activate
+ - pip install django 
+ 
+(Django2에서)
+ - django-admin startproject fc_django 
+
+(fc_django에서)
+ - django-admin startapp user 
+
+--------------------------------------------------------
+models.py 설정
+
+user models.py 수정 
+ - class User() -> 사용자 
+ - class Meta: -> admin에서 사용하기 편하기 위함
+
+product models.py 수정
+ - class Product() -> 사용자 
+ - class Meta: -> admin에서 사용하기 편하기 위함
+
+order models.py 수정 
+ - class Order() -> 사용자 
+ - class Meta: -> admin에서 사용하기 편하기 위함
+
+실제 table 생성
+ - settings.py의 APP에 user,product,order입력 
+ - (/fc_django) python manage.py makemigrations 
+ - (/fc_django) python manage.py migrate 
+
+-------------------------------------------------------------------
