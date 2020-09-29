@@ -75,4 +75,16 @@ user의 views.py를 만들기
  - class RegisterView(FormView)
 
 user에서 register.html만들기
+
 fc_django의 urls.py에서 registerView를 지정해주기 
+
+--------------------------------------------------------------------
+로그인 view 만들기(form view)
+
+user의 views.py 만들기
+ - class LoginView(FromView)
+
+user에서 login.html만들기
+
+user에서 forms.py 만들기
+ - class LoginForm() 
