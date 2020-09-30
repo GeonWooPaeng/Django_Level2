@@ -95,8 +95,29 @@ fc_django의 urls.py에서 LoginView를 지정해주기
 상품 목록 만들기(product app 부분)
 product의 views.py 수정
  - class Product(ListView) 
- 
+
 product의 templates에서
- - product.html, base.html 만들기
+ - product.html 만들기
 
 fc_django의 urls.py에서 ProductList를 지정해주기 
+
+-------------------------------------------------------
+상품 등록 만들기(product app 부분)
+
+product의 templates에서
+ - register_product.html만들기
+
+product의 forms.py 만들기
+ - class RegisterForm() 작성 <-> models.py를 참고해서 작성
+
+product의 views.py에서
+ - class ProductCreate() 작성
+
+fc_django의 urls.py에서 ProductCreate를 지정해주기 
+
+꾸미기(editor)
+1. semmornote 에서 easy to install
+2. bootstap 4번 밑 2줄 
+-> register_product.html의 {% block header %}~~~~~{% endblock %} 사이 부분
+
+---------------------------------------------------------------
