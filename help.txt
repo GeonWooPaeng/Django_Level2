@@ -89,3 +89,14 @@ user에서 login.html만들기
 user에서 forms.py 만들기
  - class LoginForm() 
  - def form_valid() #로그인이 정상적일때 session에 저장
+
+fc_django의 urls.py에서 LoginView를 지정해주기 
+--------------------------------------------------------------
+상품 목록 만들기(product app 부분)
+product의 views.py 수정
+ - class Product(ListView) 
+ 
+product의 templates에서
+ - product.html, base.html 만들기
+
+fc_django의 urls.py에서 ProductList를 지정해주기 
