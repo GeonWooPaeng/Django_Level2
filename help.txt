@@ -88,3 +88,4 @@ user에서 login.html만들기
 
 user에서 forms.py 만들기
  - class LoginForm() 
+ - def form_valid() #로그인이 정상적일때 session에 저장
