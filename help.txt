@@ -121,3 +121,29 @@ fc_django의 urls.py에서 ProductCreate를 지정해주기
 -> register_product.html의 {% block header %}~~~~~{% endblock %} 사이 부분
 
 ---------------------------------------------------------------
+
+상품 상세보기(product app 부분)
+
+product의 views.py에서
+ - class ProductDetail() 
+
+product의 templates에서
+ - product_detail.html만들기
+
+product의 product.html에서 
+ - 상품명을 누르면 상세보기 가능하게 하기 
+
+fc_django의 urls.py에서 ProductDetail를 지정해주기 -> 뒤에 번호라서 <int:pk> 사용
+
+----------------------------------------------------------------------------------------
+
+주문하기
+product_detail.html에서 주문할 수 있게 만든다.
+
+order의 forms.py에서 
+ - order의 models.py를 참고해서 class RegisterForm()을 만든다
+
+order의 views.py에서
+ - class OrderCreate() 
+
+fc_django의 urls.py에서 OrderCreate를 지정해주기 
