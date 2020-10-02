@@ -150,3 +150,15 @@ product의 views.py에서
  - def get_context_data() 부분 session 사용하기 위함
 
 fc_django의 urls.py에서 OrderCreate를 지정해주기 
+
+-----------------------------------------------------
+주문정보 조회하기
+order의 views.py 에서
+ - class OrderList()
+
+order의 templates에서 
+ - order.html 
+
+fc_django의 urls.py에서 OrderList를 지정해주기 
+
+------------------------------------------------------
