@@ -146,4 +146,7 @@ order의 forms.py에서
 order의 views.py에서
  - class OrderCreate() 
 
+product의 views.py에서
+ - def get_context_data() 부분 session 사용하기 위함
+
 fc_django의 urls.py에서 OrderCreate를 지정해주기 

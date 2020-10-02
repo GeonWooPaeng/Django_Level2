@@ -2,6 +2,7 @@ from django import forms
 from .models import Order 
 from user.models import User 
 from product.models import Product
+from django.db import transaction
 # Create your views here.
 
 class RegisterForm(forms.Form):
@@ -33,14 +34,19 @@ class RegisterForm(forms.Form):
         user = self.request.session.get('user')
 
         if quantity and product and user:
-            order = Order(
-                quantity=quantity,
-                product=Product.objects.get(pk=product),
-                user=User.objects.get(email=user)
-            ) 
-            order.save()
+            with transaction.atomic():# db안의 모든 동작이 한번에 처리되게 한다
+                prod = Product.objects.get(pk=product)
+                order = Order(
+                    quantity=quantity,
+                    product=Product.objects.get(pk=product),
+                    user=User.objects.get(email=user)
+                ) 
+                order.save()
+                prod.stock -= quantity #재고에서 주문한 만큼 빼준다. 
+                prod.save()
 
         else:
             self.product = product 
             self.add_error('quantity', '값이 없습니다.')
             self.add_error('product', '값이 없습니다.')
+# 모든 동작이 한번에 처리되게 한다
