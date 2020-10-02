@@ -162,3 +162,16 @@ order의 templates에서
 fc_django의 urls.py에서 OrderList를 지정해주기 
 
 ------------------------------------------------------
+
+Decorator -> page에 대해 권한 설정하기
+- 함수를 wrapping해서 기능을 재사용 하게 하는 것
+
+사용자 decorator 만들기
+ - user에서 decorators.py 만들기
+ - def login_required() - 로그인만 필요한 곳
+ - def admin_required() - 관리자 권한이 필요한 곳
+
+order의 views.py에서 
+ - class OrderList()위의 @method_decorator(login_required or admin_required, name='dispatch')
+ => wrapping 함수와 기존함수의 인자 값을 맞춰줘야 한다.
+ => 로그인 or 관리자 권한이 필요한 곳에 다 넣어준다.

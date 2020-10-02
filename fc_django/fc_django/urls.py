@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from user.views import index, RegisterView, LoginView
+from user.views import index, RegisterView, LoginView, logout
 from product.views import ProductList, ProductCreate, ProductDetail
 from order.views import OrderCreate, OrderList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
+    path('logout/', logout),
     path('register/', RegisterView.as_view()), #클래스인 경우 as_view()를 써줘야 한다
     path('login/', LoginView.as_view()),
     path('product/', ProductList.as_view()),
