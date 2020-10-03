@@ -3,17 +3,34 @@ from django.views.generic.edit import FormView
 from django.views.generic import ListView  
 from django.utils.decorators import method_decorator 
 from user.decorators import login_required, admin_required
+from django.db import transaction 
 from .forms import RegisterForm 
 from .models import Order 
+from product.models import Product
+from user.models import User 
 
 @method_decorator(login_required, name='dispatch')
 class OrderCreate(FormView):
     form_class = RegisterForm 
     success_url = '/product/'
 
+    def form_valid(self, form):
+        with transaction.atomic():
+            prod = Product.objects.get(pk=form.data.get('product'))
+            order = Order(
+                quantity=form.data.get('quantity'),
+                product=prod,
+                user=User.objects.get(email=self.request.session.get('user'))
+            )
+            order.save() 
+            prod.stock -= int(form.data.get('quantity')) 
+            prod.save()
+        
+        return super().form_valid(form)
+
     def form_invalid(self, form):
         # 실패를 했을 경우 error message를 보여주기 위한 page 지정 
-        return redirect('/product/' + str(form.product))
+        return redirect('/product/' + str(form.data.get('product')))
 
     def get_form_kwargs(self, **kwargs):
         #order forms.py에서 def __init__의 request를 product의 views.py에 보내기 위해

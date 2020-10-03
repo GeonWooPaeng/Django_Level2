@@ -175,3 +175,18 @@ order의 views.py에서
  - class OrderList()위의 @method_decorator(login_required or admin_required, name='dispatch')
  => wrapping 함수와 기존함수의 인자 값을 맞춰줘야 한다.
  => 로그인 or 관리자 권한이 필요한 곳에 다 넣어준다.
+
+----------------------------------------------------------------
+리팩토링 -> 유효성 부분과 모델 저장하는 부분(db) 분리
+
+user transaction(db)
+ - user의 forms.py 부분의 class RegisterForm()의 밑 회원가입 코드 삭제
+ - user의 view.py 부분의 class RegisterView()의 def form_valid()(유효성 검사 끝날때 호출되는 함수) 작성
+
+order transaction(db)
+ - order의 forms.py 부분의 with transaction.atomic()부분 
+ - order의 views.py 부분의 class OrderCreate()의 def form_valid()부분
+
+product trasaction(db)
+ - prodcut의 forms.py부분의 def clean()밑 부분을 
+ - product의 views.py의 class ProductCreate()의 def form_valid()로 옮긴다. 

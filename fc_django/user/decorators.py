@@ -8,7 +8,7 @@ def login_required(function):
         if user is None or not user:
             return redirect('/login')
         return function(request, *args, **kwargs) 
-    
+        
     return wrap 
 
 def admin_required(function):
