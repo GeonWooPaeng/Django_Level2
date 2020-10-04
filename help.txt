@@ -190,3 +190,38 @@ order transaction(db)
 product trasaction(db)
  - prodcut의 forms.py부분의 def clean()밑 부분을 
  - product의 views.py의 class ProductCreate()의 def form_valid()로 옮긴다. 
+
+------------------------------------------------------------------------
+API - front 와 backend가 분리되고 front가 backend한테 데이터를 요청할 때 사용하는것
+Rest Api는 resource를 기반으로 제공되는 api
+ - 디자인 원칙 
+  - http 주소(명사를 기반으로 만들어야 한다 - resource기준)를 요청하면 주소에 상응하는 data를 Json형태로 data를 넘겨준다.
+
+-------------------------------------------------------------------------
+django rest framework 
+ - (fc_django) pip install djangorestframework
+ - settings.py에서 APP부분에서 rest_framework 추가
+
+-----------------------------------------------------------------------
+상품에 마우스 커서를 댓을때 정보가 나오게 하기(백엔드)
+ - product에서 serializers.py 만들기 
+ - serializers.py를 models.py 보고 만들기
+
+product의 views.py에서 
+ - class ProductListAPI()(api 확인하는 곳)를 만든다
+ - class ProductDetailAPI()(커서 댓을때 정보 확인하는 곳)를 만든다 
+
+urls.py 연결 
+ - path('api/product/',ProductListAPI)
+ - path('api/product/<int:pk>', ProductDetailAPI.as_view())
+
+api 확인 작업
+ - python manage.py runserver을 한 후
+ - +로 terminal을 하나더 실행해서
+ - curl http://127.0.0.1:8000/api/product/
+
+or 
+사이트에서 /api/product/를 들어가서 본다
+
+----------------------------------------------------
+상품에 마우스 커서를 댓을때 정보가 나오게 하기(front)

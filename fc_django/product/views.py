@@ -2,11 +2,34 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import FormView 
 from django.utils.decorators import method_decorator 
+from rest_framework import generics 
+from rest_framework import mixins 
+
 from user.decorators import login_required, admin_required
 from .models import Product 
 from .forms import RegisterForm
+from .serializers import ProductSerializer
 from order.forms import RegisterForm as OrderForm
 # Create your views here.
+
+class ProductListAPI(generics.GenericAPIView, mixins.ListModelMixin):
+    serializer_class = ProductSerializer #데이터 검증
+
+    def get_queryset(self):
+        #어떤 data를 가지고 올 것인지(모두)
+        return Product.objects.all().order_by('id')
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+class ProductDetailAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
+    serializer_class = ProductSerializer 
+
+    def get_queryset(self):
+        return Product.objects.all().order_by('id')
+    
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
 class ProductList(ListView):
     model = Product 
