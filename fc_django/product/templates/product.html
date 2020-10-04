@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 <!-- 여러 필터 사용 -> settings에 django.contrib.humanize를 넣어준다. -->
 {% load humanize %} 
+{% block header %}
+<script>
+    function product_detail(id) {
+        // 커서 올리면 자료 보이게 하기
+        $.ajax({
+            url: "/api/product/" + id,
+            success: function (result) {
+                $("#product-" + id).popover({
+                    html: true, //content를 사용할 것인데 html 태그를 사용할 것이다.
+                    content: result.name + "<br/>" + result.price
+                }).popover('show');
+            }
+        });
+    }
+    function product_leave(id) {
+        // 커서 내리면 안보이게 하는 곳
+        $("#product-" + id).popover('hide');
+    }
+    $(document).ready(function(){}); // page가 준비가 끝나고 완료 됬을때 이 함수를 호출하라
+</script>
+{% endblock %}
 {% block contents %}
 <div class="row mt-5">
     <div class="col-12">
@@ -17,7 +38,8 @@
                 {% for product in product_list %}
                 <tr>
                     <th scope="row">{{ product.id }}</th>
-                    <th><a href="/product/{{ product.id }}">{{ product.name }}</a></th>
+                    <th><a id="product-{{ product.id }}" onmouseenter="product_detail({{ product.id }});"
+                        onmouseleave="product_leave({{ product.id }});" href="/product/{{ product.id }}">{{ product.name }}</a></th>
                     <th>{{ product.price|intcomma }} 원</th>
                     <th>{{ product.register_date|date:'Y-m-d H:i' }}</th>
                 </tr>

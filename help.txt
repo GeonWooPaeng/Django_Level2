@@ -224,4 +224,22 @@ or
 사이트에서 /api/product/를 들어가서 본다
 
 ----------------------------------------------------
-상품에 마우스 커서를 댓을때 정보가 나오게 하기(front)
+상품에 마우스 커서를 댓을때 정보가 나오게 하기(front) - jquery 사용
+
+api 연동 
+https://code.jquery.com/ 에서 jQuery 3.x 의 minified을 copy해서 
+base.html에서 head의 원래의 jquery 부분을 삭제하고 복사한 것을 넣어준다. 
+
+https://jquery.com/
+ - product.html의 {% block header %} {% blockend %}사이 부분에 Ajax사용
+
+/product/ 사이트로 가서 f12로 눌러 console 부분 확인(새로고침)
+
+
+원하는 동작 실행(event 연결하기)
+아이디 등록
+ - product.html에서 <th><a id="product-{{ product.id }} 연결
+
+아이디에 대한 함수 지정 
+ - 위 <script> 부분 수정 , id 들어간 부분 수정
+ 
