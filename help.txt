@@ -243,3 +243,16 @@ https://jquery.com/
 아이디에 대한 함수 지정 
  - 위 <script> 부분 수정 , id 들어간 부분 수정
  
+---------------------------------------------------------
+가상환경 설정(최신으로 바꾸기)
+ -(fc_django) python -m venv venv
+ -(fc_django) cd venv
+ - cd scripts 
+ - activate
+ - python -m pip install django
+ - python -m pip install djangorestframework
+ - (fc_django) python manage.py runserver
+
+----------------------------------------------------------
+django admin 사용자 생성 및 권한 부여(슈퍼유저 대신)
+- 강의 Framework Django 프로젝트 3회차
